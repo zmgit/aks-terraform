@@ -87,9 +87,9 @@ variable "aks" {
 
     additional_node_pools = {
 
-      nodepool1 = {
-        name                           = "nodepool1"
-        node_count                     = 3
+      lnp1 = {
+        name                           = "lnp1"
+        node_count                     = 1
         node_os                        = "Linux"
         vm_size                        = "Standard_D4_v3"
         os_disk_size_gb                = 128
@@ -106,10 +106,29 @@ variable "aks" {
         }
       }
 
-      nodepool2 = {
-        name                           = "nodepool2"
-        node_count                     = 3
+      lnp2 = {
+        name                           = "lnp2"
+        node_count                     = 0
         node_os                        = "Linux"
+        vm_size                        = "Standard_D4_v3"
+        os_disk_size_gb                = 128
+        max_pods                       = 250
+        enable_node_public_ip          = false
+        zones                          = ["1", "2", "3"]
+        taints                         = null
+        cluster_auto_scaling           = true
+        cluster_auto_scaling_min_count = 0
+        cluster_auto_scaling_max_count = 5
+        labels = {
+          "pool_name" = "node_pool_2"
+          "label_1"   = "value_1"
+        }
+      }
+
+      wnp3 = {
+        name                           = "wnp3" # A Windows Node Pool cannot have a name longer than 6 characters.
+        node_count                     = 1
+        node_os                        = "Windows"
         vm_size                        = "Standard_D4_v3"
         os_disk_size_gb                = 128
         max_pods                       = 250
@@ -125,28 +144,9 @@ variable "aks" {
         }
       }
 
-      # nodepool3 = {
-      #   name                           = "nodepool3"
-      #   node_count                     = 3
-      #   node_os                        = "Windows"
-      #   vm_size                        = "Standard_D4_v3"
-      #   os_disk_size_gb                = 128
-      #   max_pods                       = 250
-      #   enable_node_public_ip          = false
-      #   zones                          = ["1", "2", "3"]
-      #   taints                         = null
-      #   cluster_auto_scaling           = false
-      #   cluster_auto_scaling_min_count = null
-      #   cluster_auto_scaling_max_count = null
-      #   labels = {
-      #     "pool_name" = "node_pool_2"
-      #     "label_1"   = "value_1"
-      #   }
-      # }
-
-      nodepool4 = {
-        name                           = "nodepool4"
-        node_count                     = 5
+      wnp4 = {
+        name                           = "wnp4" # A Windows Node Pool cannot have a name longer than 6 characters.
+        node_count                     = 0
         node_os                        = "Windows"
         vm_size                        = "Standard_D4_v3"
         os_disk_size_gb                = 128
