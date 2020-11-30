@@ -47,8 +47,9 @@ variable "aks" {
     role_based_access_control = {
       enabled = true
       azure_active_directory = {
-        managed = false # if true, put the right admin_group_object_ids. see example below. if false, leave admin_group_object_ids as described below
-        admin_group_object_ids = ["12345678-1234-1234-1234-123456789012"]
+        managed = true
+        # admin_group_object_ids = ["12345678-1234-1234-1234-123456789012"]
+        admin_group_object_ids = []
       }
     }
 
@@ -124,24 +125,24 @@ variable "aks" {
         }
       }
 
-      nodepool3 = {
-        name                           = "nodepool3"
-        node_count                     = 3
-        node_os                        = "Windows"
-        vm_size                        = "Standard_D4_v3"
-        os_disk_size_gb                = 128
-        max_pods                       = 250
-        enable_node_public_ip          = false
-        zones                          = ["1", "2", "3"]
-        taints                         = null
-        cluster_auto_scaling           = false
-        cluster_auto_scaling_min_count = null
-        cluster_auto_scaling_max_count = null
-        labels = {
-          "pool_name" = "node_pool_2"
-          "label_1"   = "value_1"
-        }
-      }
+      # nodepool3 = {
+      #   name                           = "nodepool3"
+      #   node_count                     = 3
+      #   node_os                        = "Windows"
+      #   vm_size                        = "Standard_D4_v3"
+      #   os_disk_size_gb                = 128
+      #   max_pods                       = 250
+      #   enable_node_public_ip          = false
+      #   zones                          = ["1", "2", "3"]
+      #   taints                         = null
+      #   cluster_auto_scaling           = false
+      #   cluster_auto_scaling_min_count = null
+      #   cluster_auto_scaling_max_count = null
+      #   labels = {
+      #     "pool_name" = "node_pool_2"
+      #     "label_1"   = "value_1"
+      #   }
+      # }
 
       nodepool4 = {
         name                           = "nodepool4"
