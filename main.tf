@@ -28,7 +28,7 @@ module "aks" {
   kubernetes_version  = var.aks.kubernetes_version
   private_cluster     = var.aks.private_cluster
   sla_sku             = var.aks.sla_sku
-  api_auth_ips        = [var.aks.api_auth_ips]
+  api_auth_ips        = var.aks.api_auth_ips
   vnet_subnet_id = module.network.subnet_id
 
   role_based_access_control = {
