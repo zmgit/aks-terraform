@@ -42,7 +42,8 @@ variable "aks" {
     kubernetes_version = "1.18.10"
     sla_sku            = "Free"
     private_cluster    = false
-    api_auth_ips       = "0.0.0.0/0"
+    api_auth_ips       = [] # leave an empty array(e.g. []) to disable or specify CIDRs (e.g. ["192.168.0.0/24", "1.1.1.1/32"]) https://docs.microsoft.com/en-us/azure/aks/api-server-authorized-ip-ranges
+
 
     role_based_access_control = {
       enabled = true
